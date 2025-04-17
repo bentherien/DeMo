@@ -20,11 +20,18 @@ git clone  https://github.com/bentherien/DeMo
 git clone https://github.com/allenai/OLMo
 cd OLMo
 git checkout 46f06cb
+
+
+pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121
+
 cd ../DeMo
 
 python -m 0001-DeMo.patch
 
-pip install torch einops
+
+
+
+
 
 ```
 
