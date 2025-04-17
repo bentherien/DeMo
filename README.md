@@ -28,6 +28,14 @@ pip install torch einops
 
 ```
 
+# Commands
+```
+torchrun --nodes=1 --nproc-per-node=8 scripts/train.py OLMo-300M-100BT-demo.yaml
+torchrun --nodes=1 --nproc-per-node=8 scripts/train.py OLMo-300M-100BT-ref.yaml
+
+torchrun --nodes=1 --nproc-per-node=8 scripts/train.py OLMo-1B-100BT-demo.yaml
+torchrun --nodes=1 --nproc-per-node=8 scripts/train.py OLMo-1B-100BT-ref.yaml
+```
 
 
 # DeMo
