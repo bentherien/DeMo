@@ -1,3 +1,35 @@
+# Install
+
+```
+apt-get update
+apt install tmux vim rsync htop -y
+tmux
+
+mkdir demo_install
+cd demo_install
+
+wget https://repo.anaconda.com/miniconda/Miniconda3-py311_24.7.1-0-Linux-x86_64.sh
+bash Miniconda3-py311_24.7.1-0-Linux-x86_64.sh -b -p $PWD/miniconda3
+source $PWD/miniconda3/bin/activate
+
+
+
+git clone  https://github.com/bentherien/DeMo
+
+# install OLMO
+git clone https://github.com/allenai/OLMo
+cd OLMo
+git checkout 46f06cb
+cd ../DeMo
+
+python -m 0001-DeMo.patch
+
+pip install torch einops
+
+```
+
+
+
 # DeMo
 This package contains the supplementary material for [DeMo: Decoupled Momentum Optimization](https://arxiv.org/abs/2411.19870) (arXiv)
 
