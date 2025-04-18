@@ -12,21 +12,18 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-py311_24.7.1-0-Linux-x86_64.
 bash Miniconda3-py311_24.7.1-0-Linux-x86_64.sh -b -p $PWD/miniconda3
 source $PWD/miniconda3/bin/activate
 
-
-
 git clone  https://github.com/bentherien/DeMo
-
-# install OLMO
 git clone https://github.com/allenai/OLMo
 cd OLMo
 git checkout 46f06cb
-
+git apply ../DeMo/0001-DeMo.patch
+pip install -e .[all]
 
 pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --index-url https://download.pytorch.org/whl/cu121
 
 cd ../DeMo
 
-python -m 0001-DeMo.patch
+
 
 
 
@@ -37,8 +34,12 @@ python -m 0001-DeMo.patch
 
 # Commands
 ```
+torchrun --nnodes=1 --nproc-per-node=4 scripts/train.py ../DeMo/OLMo-300M-100BT-demo_modif.yaml
+
+
+
 torchrun --nodes=1 --nproc-per-node=8 scripts/train.py OLMo-300M-100BT-demo.yaml
-torchrun --nodes=1 --nproc-per-node=8 scripts/train.py OLMo-300M-100BT-ref.yaml
+torchrun --nodes=1 --nproc-per-node=4 scripts/train.py OLMo-300M-100BT-ref.yaml
 
 torchrun --nodes=1 --nproc-per-node=8 scripts/train.py OLMo-1B-100BT-demo.yaml
 torchrun --nodes=1 --nproc-per-node=8 scripts/train.py OLMo-1B-100BT-ref.yaml
